@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Text Editor</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div id="main-settings-block">
+		<button id="settings-menu-btn"><img src="resours/icons/close.svg"></button><br><br><br>
+		<div class="header-theme-settings">
+			<p>Themes</p>
+			
+			<label for="theme-select" id="theme-select-label">Choose a theme:</label>
+			<select id="themes-select-blc">
+  			<option value="0">Follow System</option>
+  			<option value="1">Dark</option>
+  			<option value="2">Light</option>
+			</select>
+		</div>
+	</div>
+
+	<button id="header-menu-btn"><img src="resours/icons/menu.svg"></button>
+
+	<div id="main-block">
+		<textarea id="mainTextArea" placeholder="Start writing..."></textarea>
+	</div>
+
+	<script src="main.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.10/SmoothScroll.min.js" integrity="sha256-huW7yWl7tNfP7lGk46XE+Sp0nCotjzYodhVKlwaNeco=" crossorigin="anonymous"></script>
+	<script>
+	SmoothScroll({
+    animationTime: 700,
+    stepSize: 75,
+    accelerationDelta : 30,  
+    accelerationMax   : 2,   
+    keyboardSupport   : true,  
+    arrowScroll       : 50,
+    pulseAlgorithm   : true,
+    pulseScale       : 4,
+    pulseNormalize   : 1,
+    touchpadSupport   : false,
+	});
+	</script>
+</body>
+</html>

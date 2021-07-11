@@ -1,0 +1,108 @@
+body {
+  padding: 0;
+  margin: 0;
+  scroll-behavior: smooth;
+  background: rgb(245, 223, 77);
+}
+
+* {transition: 0.3s ease-in-out; font-family: 'Roboto Slab', serif;}
+button:focus {outline: none;}
+textarea:focus {outline: none;}
+
+::-webkit-scrollbar {background: transparent; width: 8px;}
+::-webkit-scrollbar-thumb {background: rgba(255, 255, 255, 0.2); border-radius: 0px;}
+::-webkit-scrollbar-track-piece {background: transparent;}
+
+#main-block {
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 80px;
+	background: transparent;
+	text-align: center;
+	width: 95%;
+	padding-bottom: 20px;
+}
+
+#mainTextArea {
+	width: 70%;
+	min-height: 400px;
+	resize: none;
+	padding: 14px;
+	font-size: 16pt;
+	border: 2px solid white;
+	border-radius: 8px;
+	letter-spacing: 1.5px;
+	overflow: hidden;
+	word-wrap: unset;
+}
+#mainTextArea:focus {border: 2px solid white;}
+
+#main-settings-block {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: rgba(255, 255, 255, 0.60);
+	backdrop-filter: blur(8.0px);
+	-webkit-backdrop-filter: blur(8.0px);
+
+	display: none;
+	flex-direction: column;
+	justify-content: flex-start;
+}
+
+#settings-menu-btn {
+	display: block;
+	padding: 15px;
+	background: transparent;
+	border: none;
+	text-align: center;
+	position: absolute;
+}
+#settings-menu-btn img {width: 30px;height: 30px;}
+
+#header-menu-btn {
+	display: block;
+	padding: 15px;
+	background: transparent;
+	border: none;
+	text-align: center;
+	position: absolute;
+}
+#header-menu-btn img {width: 30px;height: 30px;}
+
+.header-theme-settings {
+	background: transparent;
+	padding: 10px;
+	padding-left: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 80%;
+}
+.header-theme-settings > p {
+	font-size: 16pt;
+	letter-spacing: 1px;
+}
+
+#theme-select-label {
+	padding: 8px;
+	font-size: 16pt;
+}
+
+#themes-select-blc {
+	font-size: 15pt;
+	padding: 10px;
+	width: 220px;
+	border: 2px solid white;
+	border-radius: 7px;
+	background: white;
+}
+#themes-select-blc:focus {
+	border: 2px solid black;
+}
+#themes-select-blc > option {
+	font-size: 14pt;
+	padding: 8px;
+}
+
+
+
