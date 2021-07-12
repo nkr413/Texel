@@ -11,20 +11,28 @@
 </head>
 <body>
 	<div id="main-settings-block">
-		<button id="settings-menu-btn"><img src="resours/icons/close.svg"></button><br><br><br>
+		<button id="settings-menu-btn"><div></div></button><br><br><br>
 		<div class="header-theme-settings">
-			<p>Themes</p>
 			
-			<label for="theme-select" id="theme-select-label">Choose a theme:</label>
-			<select id="themes-select-blc">
-  			<option value="0">Follow System</option>
-  			<option value="1">Dark</option>
-  			<option value="2">Light</option>
-			</select>
+			<div id="themes-input-blc">	
+				<div>Themes</div>
+
+				<input type="radio" name="theme-radios" id="theme-radio-1" value="system" checked="checked">
+				<label for="theme-radio-1">Follow System</label>
+
+				<input type="radio" name="theme-radios" id="theme-radio-2" value="light">
+				<label for="theme-radio-2">Light</label>
+
+				<input type="radio" name="theme-radios" id="theme-radio-3" value="dark">
+				<label for="theme-radio-3">Dark</label>
+			</div><br>
+
+			<button id="copy-all-text-btn">Copy</button><br><br><br>
+			<button id="delete-all-text-btn">Delete all text</button>
 		</div>
 	</div>
 
-	<button id="header-menu-btn"><img src="resours/icons/menu.svg"></button>
+	<button id="header-menu-btn"><div></div></button>
 
 	<div id="main-block">
 		<textarea id="mainTextArea" placeholder="Start writing..."></textarea>
