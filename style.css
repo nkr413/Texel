@@ -1,3 +1,5 @@
+@import 'resours/font.css';
+
 :root {
 	--black-color: black;
 	--white-color: white;
@@ -7,6 +9,11 @@
 
 	--text-area-bg-color: white;
 	--text-area-text-color: black;
+	--text-area-selection-bg-color: black;
+	--text-area-selection-text-color: white;
+
+	--settings-block-btn-bg-color: white;
+	--settings-block-btn-text-color: black;
 
 	--not-dark: #111111;
 }
@@ -50,6 +57,11 @@ textarea:focus {outline: none;}
 	overflow: hidden;
 	word-wrap: break-word;
 }
+#mainTextArea::selection {
+	background-color: var(--text-area-selection-bg-color);
+	color: var(--text-area-selection-text-color);
+	border-radius: 3px;
+}
 
 #main-settings-block {
 	position: absolute;
@@ -58,6 +70,7 @@ textarea:focus {outline: none;}
 	background: var(--settings-block-bg-color);
 	backdrop-filter: blur(8.0px);
 	-webkit-backdrop-filter: blur(8.0px);
+	user-select: none;
 
 	display: none;
 	flex-direction: column;
@@ -138,19 +151,20 @@ textarea:focus {outline: none;}
 #themes-input-blc label {
 	color: var(--black-color);
 	padding: 8px;
-	padding-left: 14px;
+	padding-left: 18px;
 	letter-spacing: 1px;
 	border-left: 3px solid transparent;
 }
 #theme-radio-1:checked + label,
 #theme-radio-2:checked + label,
-#theme-radio-3:checked + label {border-left: 3px solid var(--black-color);}
+#theme-radio-3:checked + label,
+#theme-radio-4:checked + label {border-left: 3px solid var(--black-color);}
 
 #copy-all-text-btn, #delete-all-text-btn {
-	background: white;
+	background: var(--settings-block-btn-bg-color);
+	color: var(--settings-block-btn-text-color);
 	border: 2px solid transparent;
 	border-radius: 5px;
-	color: black;
 	letter-spacing: 1.5px;
 	padding: 8px;
 	font-size: 16pt;
@@ -166,3 +180,31 @@ textarea:focus {outline: none;}
 
 
 
+#sound-radio-blc {
+	width: 200px;
+	background: transparent;
+	font-size: 16pt;
+	border: 2px solid transparent;
+	border-radius: 2px;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+}
+#sound-radio-blc > div {
+	color: var(--black-color);
+	font-size: 16pt;
+	letter-spacing: 1px;
+	padding-bottom: 12px;
+	width: 220px;
+}
+#sound-radio-blc input {display: none;}
+#sound-radio-blc label {
+	color: var(--black-color);
+	padding: 8px;
+	padding-left: 18px;
+	letter-spacing: 1px;
+	border-left: 3px solid transparent;
+}
+#sound-radio-1:checked + label,
+#sound-radio-2:checked + label {border-left: 3px solid var(--black-color);}
