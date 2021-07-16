@@ -13,6 +13,8 @@ let data = {
 
     document.documentElement.style.setProperty("--settings-block-btn-bg-color", "white");
     document.documentElement.style.setProperty("--settings-block-btn-text-color", "black");
+
+    document.documentElement.style.setProperty("--scrollbar-thumb-color", "rgba(0, 0, 0, 0.6)");
   }, 
 
   dark() {
@@ -27,6 +29,8 @@ let data = {
 
     document.documentElement.style.setProperty("--settings-block-btn-bg-color", "white");
     document.documentElement.style.setProperty("--settings-block-btn-text-color", "black");
+
+    document.documentElement.style.setProperty("--scrollbar-thumb-color", "rgba(255, 255, 255, 0.1)");
   },
 
   matrix() {
@@ -41,9 +45,10 @@ let data = {
 
     document.documentElement.style.setProperty("--settings-block-btn-bg-color", "#00FF00");
     document.documentElement.style.setProperty("--settings-block-btn-text-color", "black");
+
+    document.documentElement.style.setProperty("--scrollbar-thumb-color", "rgba(0, 255, 0, 0.3)");
   }
 };
-
 
 // ALL EVENTS
 window.onload = function() {
@@ -51,6 +56,7 @@ window.onload = function() {
   themeRadioItems();
   soundRadioItems();
   randomTxtPlaceHolder();
+  autoSizeTxtArea();
 } 
 window.addEventListener("keydown", function(e) {
   if (localStorage.getItem("sound-radio") == 1) btnSound();
@@ -71,21 +77,21 @@ document.querySelectorAll("#sound-radio-blc > input[name='sound-radios']").forEa
   item.addEventListener("click", () => {
     item.checked = true;
     
-    if (item.value == "yes") localStorage.setItem("sound-radio", 1);
-    else if (item.value == "no") localStorage.setItem("sound-radio", 2);
+    if (item.value == "yes") localStorage.setItem("sound-radio", "1");
+    else if (item.value == "no") localStorage.setItem("sound-radio", "2");
     else return;
   });
 });
 window.addEventListener("beforeunload", (e) => {
   localStorage.setItem('text_area', document.getElementById("mainTextArea").value), false;
 
-  if (document.getElementById("theme-radio-1").checked == true) localStorage.setItem("theme-radio", 1);
-  else if (document.getElementById("theme-radio-2").checked == true) localStorage.setItem("theme-radio", 2);
-  else if (document.getElementById("theme-radio-3").checked == true) localStorage.setItem("theme-radio", 3);
-  else if (document.getElementById("theme-radio-4").checked == true) localStorage.setItem("theme-radio", 4);
+  if (document.getElementById("theme-radio-1").checked == true) localStorage.setItem("theme-radio", "1");
+  else if (document.getElementById("theme-radio-2").checked == true) localStorage.setItem("theme-radio", "2");
+  else if (document.getElementById("theme-radio-3").checked == true) localStorage.setItem("theme-radio", "3");
+  else if (document.getElementById("theme-radio-4").checked == true) localStorage.setItem("theme-radio", "4");
 
-  if (document.getElementById("sound-radio-1").checked == true) localStorage.setItem("sound-radio", 1);
-  else if (document.getElementById("sound-radio-2").checked == true) localStorage.setItem("sound-radio", 2);
+  if (document.getElementById("sound-radio-1").checked == true) localStorage.setItem("sound-radio", "1");
+  else if (document.getElementById("sound-radio-2").checked == true) localStorage.setItem("sound-radio", "2");
 });
 document.getElementById("header-menu-btn").addEventListener("click", (e) => {
   let stt_blc = document.getElementById("main-settings-block");
@@ -111,8 +117,8 @@ function btnSound() {
   audio.play();
 }
 function soundRadioItems() {
-  if (localStorage.getItem("sound-radio") == 1) document.getElementById("sound-radio-1").checked = true;
-  else if (localStorage.getItem("sound-radio") == 2) document.getElementById("sound-radio-2").checked = true;
+  if (localStorage.getItem("sound-radio") == "1") document.getElementById("sound-radio-1").checked = true;
+  else if (localStorage.getItem("sound-radio") == "2") document.getElementById("sound-radio-2").checked = true;
 }
 
 function followSystemTheme() {
@@ -124,16 +130,16 @@ function followSystemTheme() {
   else data.light();
 }
 function themeRadioItems() {
-  if (localStorage.getItem("theme-radio") == 1) {
+  if (localStorage.getItem("theme-radio") == "1") {
     document.getElementById("theme-radio-1").checked = true;
     followSystemTheme();
-  } else if (localStorage.getItem("theme-radio") == 2) {
+  } else if (localStorage.getItem("theme-radio") == "2") {
     document.getElementById("theme-radio-2").checked = true;
     data.light();
-  } else if (localStorage.getItem("theme-radio") == 3) {
+  } else if (localStorage.getItem("theme-radio") == "3") {
     document.getElementById("theme-radio-3").checked = true;
     data.dark();
-  } else if (localStorage.getItem("theme-radio") == 4) {
+  } else if (localStorage.getItem("theme-radio") == "4") {
     document.getElementById("theme-radio-4").checked = true;
     data.matrix();
   } else return;
@@ -148,7 +154,6 @@ function OnInput() {
   this.style.height = "auto";
   this.style.height = (this.scrollHeight) + "px";
 }
-autoSizeTxtArea();
 
 function randomTxtPlaceHolder() {
   let arr = ['Unleash your imagination...', 'Start writing...' , 'Do you want to write ?', 'I advise you to write without mistakes :)', 'Write, write non-stop :)']
