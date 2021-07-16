@@ -15,7 +15,7 @@
 	--settings-block-btn-bg-color: white;
 	--settings-block-btn-text-color: black;
 
-	--not-dark: #111111;
+	--scrollbar-thumb-color: rgba(0, 0, 0, 0.6);
 }
 
 body {
@@ -25,12 +25,12 @@ body {
   background-color: var(--body-color);
 }
 
-* {transition: 0.3s ease-in-out; font-family: 'Roboto Slab', serif;}
+* {transition: 0.3s ease-in-out; font-family: "Roboto Slab", serif;}
 button:focus {outline: none;}
 textarea:focus {outline: none;}
 
-::-webkit-scrollbar {background: transparent; width: 8px;}
-::-webkit-scrollbar-thumb {background: rgba(255, 255, 255, 0.2); border-radius: 0px;}
+::-webkit-scrollbar {background: rgba(255, 255, 255, 0); width: 8px;}
+::-webkit-scrollbar-thumb {background: var(--scrollbar-thumb-color); border-radius: 0px;}
 ::-webkit-scrollbar-track-piece {background: transparent;}
 
 #main-block {
@@ -75,6 +75,7 @@ textarea:focus {outline: none;}
 	display: none;
 	flex-direction: column;
 	justify-content: flex-start;
+	position: fixed;
 }
 
 /* ------------- STYLES AND ANIMATIONS FOR BUTTON MENU ------------- */
@@ -93,33 +94,27 @@ textarea:focus {outline: none;}
 	border-radius: 100%;
 	background: transparent;
 }
-#header-menu-btn:hover div {
-	animation-name: header-menu-btn-anm;
-	animation-duration: 2s;
-	animation-timing-function: ease-in-out;
-	animation-delay: 0s;
-	animation-iteration-count: infinite;
-	animation-play-state: running;	
-}
-#settings-menu-btn:hover div {
-	animation-name: settings-menu-btn-anm;
-	animation-duration: 2s;
-	animation-timing-function: ease-in-out;
-	animation-delay: 0s;
-	animation-iteration-count: infinite;
-	animation-play-state: running;
-}
-@keyframes header-menu-btn-anm {
-	0% {border-radius: 100%;}
-	50% {border-radius: 0px;}
-	100% {border-radius: 100%;}
-}
-@keyframes settings-menu-btn-anm {
-	0% {border-radius: 100%}
-	50% {border-radius: 0 0 100% 0;}
-	100% {border-radius: 100%;}
+
+#settings-menu-btn div {
+	border-radius: 0 0 100% 0;
+
 }
 /* ---------------------------------------------- */
+
+.setting-btn-block {
+	background: transparent;
+	border: 2px solid transparent;
+	padding: 10px;
+	padding-left: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 80%;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+}
+.setting-btn-block > button:nth-of-type(1) {margin-right: 20px;}
 
 .header-theme-settings {
 	background: transparent;
@@ -128,32 +123,23 @@ textarea:focus {outline: none;}
 	margin-left: auto;
 	margin-right: auto;
 	width: 80%;
+
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	flex-wrap: wrap;
 }
+.header-theme-settings > div {margin-bottom: 20px;}
 
 #themes-input-blc {
 	width: 200px;
 	background: transparent;
 	font-size: 16pt;
-	border: 2px solid transparent;
 	border-radius: 2px;
 
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-}
-#themes-input-blc > div {
-	color: var(--black-color);
-	font-size: 16pt;
-	letter-spacing: 1px;
-	padding-bottom: 12px;
-}
-#themes-input-blc input {display: none;}
-#themes-input-blc label {
-	color: var(--black-color);
-	padding: 8px;
-	padding-left: 18px;
-	letter-spacing: 1px;
-	border-left: 3px solid transparent;
 }
 #theme-radio-1:checked + label,
 #theme-radio-2:checked + label,
@@ -178,8 +164,6 @@ textarea:focus {outline: none;}
 #copy-all-text-btn:hover, #delete-all-text-btn:hover {border: 2px solid black;}
 #copy-all-text-btn:active, #delete-all-text-btn:active {transform: translateY(10px);}
 
-
-
 #sound-radio-blc {
 	width: 200px;
 	background: transparent;
@@ -191,20 +175,30 @@ textarea:focus {outline: none;}
 	flex-direction: column;
 	justify-content: flex-start;
 }
-#sound-radio-blc > div {
+#sound-radio-1:checked + label,
+#sound-radio-2:checked + label {border-left: 3px solid var(--black-color);}
+
+/* RADIOS INPUT STYLES */
+#themes-input-blc > div, #sound-radio-blc > div {
 	color: var(--black-color);
 	font-size: 16pt;
 	letter-spacing: 1px;
 	padding-bottom: 12px;
 	width: 220px;
 }
-#sound-radio-blc input {display: none;}
-#sound-radio-blc label {
+
+#themes-input-blc input, #sound-radio-blc input {display: none;}
+#themes-input-blc label, #sound-radio-blc label {
 	color: var(--black-color);
 	padding: 8px;
 	padding-left: 18px;
 	letter-spacing: 1px;
+	background: transparent;
 	border-left: 3px solid transparent;
+	border: 3px solid transparent;
+	border-radius: 0px;
 }
-#sound-radio-1:checked + label,
-#sound-radio-2:checked + label {border-left: 3px solid var(--black-color);}
+#themes-input-blc label:hover, #sound-radio-blc label:hover {
+	border: 3px solid var(--black-color);
+	border-radius: 6px;
+}
