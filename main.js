@@ -8,7 +8,7 @@ let data = {
     document.documentElement.style.setProperty("--text-area-selection-text-color", "white");
 
     document.documentElement.style.setProperty("--body-color", "white");
-    document.documentElement.style.setProperty("--settings-block-bg-color", "rgba(255, 255, 255, 0.60)");
+    document.documentElement.style.setProperty("--settings-block-bg-color", "rgba(255, 255, 255, 0.50)");
     document.documentElement.style.setProperty("--black-color", "black");
 
     document.documentElement.style.setProperty("--settings-block-btn-bg-color", "white");
@@ -24,7 +24,7 @@ let data = {
     document.documentElement.style.setProperty("--text-area-selection-text-color", "black");
 
     document.documentElement.style.setProperty("--body-color", "black");
-    document.documentElement.style.setProperty("--settings-block-bg-color", "rgba(20, 20, 20, 0.60)");
+    document.documentElement.style.setProperty("--settings-block-bg-color", "rgba(20, 20, 20, 0.50)");
     document.documentElement.style.setProperty("--black-color", "white");
 
     document.documentElement.style.setProperty("--settings-block-btn-bg-color", "white");
@@ -40,7 +40,7 @@ let data = {
     document.documentElement.style.setProperty("--text-area-selection-text-color", "black");
 
     document.documentElement.style.setProperty("--body-color", "black");
-    document.documentElement.style.setProperty("--settings-block-bg-color", "rgba(250, 250, 250, 0)");
+    document.documentElement.style.setProperty("--settings-block-bg-color", "rgba(20, 20, 20, 0.50)");
     document.documentElement.style.setProperty("--black-color", "#00FF00");
 
     document.documentElement.style.setProperty("--settings-block-btn-bg-color", "#00FF00");
@@ -95,15 +95,15 @@ window.addEventListener("beforeunload", (e) => {
 });
 document.getElementById("header-menu-btn").addEventListener("click", (e) => {
   let stt_blc = document.getElementById("main-settings-block");
-  if (stt_blc.style.display = "none") {
-    stt_blc.style.display = "flex";
+  if (stt_blc.style.transform = "translateX(-100%)") {
+    stt_blc.style.transform = "translateX(0%)";
     document.getElementById("header-menu-btn").style.display = "none";
   }
 });
 document.getElementById("settings-menu-btn").addEventListener("click", (e) => {
   let stt_blc = document.getElementById("main-settings-block");
-  if (stt_blc.style.display = "flex") {
-    stt_blc.style.display = "none";
+  if (stt_blc.style.transform = "translateX(0%)") {
+    stt_blc.style.transform = "translateX(-100%)";
     document.getElementById("header-menu-btn").style.display = "block";
   }
 });
