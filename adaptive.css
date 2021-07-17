@@ -1,0 +1,53 @@
+@media screen and (max-width: 540px) {
+	#mainTextArea {
+		width: 90%;
+		padding: 10px;
+		font-size: 14pt;
+		letter-spacing: 1px;
+	}
+	#settings-menu-btn, #header-menu-btn {padding: 14px;}
+	#settings-menu-btn div, #header-menu-btn div {width: 18px;height: 18px;}
+	#copy-all-text-btn, #delete-all-text-btn {letter-spacing: 1px;padding: 0px;font-size: 14pt;}
+	.setting-btn-block {padding: 8px;}
+	#copy-all-text-btn {width: 80px;}
+	#delete-all-text-btn {width: 180px;}
+	.header-theme-settings > div {margin-bottom: 30px; margin-right: 30px;}
+	#themes-input-blc, #sound-radio-blc {width: 180px;font-size: 14pt;}	
+}
+
+@media screen and (max-width: 400px) {
+	#mainTextArea {
+		width: 90%;
+		padding: 8px;
+		font-size: 14pt;
+		letter-spacing: 1px;
+	}
+	#settings-menu-btn, #header-menu-btn {padding: 12px;}
+	#settings-menu-btn div, #header-menu-btn div {width: 16px;height: 16px;}
+	#copy-all-text-btn, #delete-all-text-btn {
+		letter-spacing: 1px;
+		padding: 0px;
+		font-size: 14pt;
+		height: 40px;
+	}
+	.setting-btn-block {padding: 6px;}
+	.setting-btn-block > button:nth-of-type(1) {margin-right: 16px; margin-bottom: 16px;}
+	#copy-all-text-btn {width: 70px;}
+	#delete-all-text-btn {width: 170px;}
+	.header-theme-settings {padding: 8px;padding-left: 18px;width: 85%;}
+	.header-theme-settings > div {margin-bottom: 20px; margin-right: 20px;}
+	#themes-input-blc, #sound-radio-blc {width: 180px;font-size: 14pt;}	
+
+	#themes-input-blc label, #sound-radio-blc label {
+		padding-left: 16px;
+		border-left: 2px solid transparent;
+		border: 2px solid transparent;
+	}
+	#themes-input-blc label:hover, #sound-radio-blc label:hover {border: 2px solid var(--black-color);}
+	#theme-radio-1:checked + label,
+	#theme-radio-2:checked + label,
+	#theme-radio-3:checked + label,
+	#theme-radio-4:checked + label {border-left: 2px solid var(--black-color);}
+	#sound-radio-1:checked + label,
+	#sound-radio-2:checked + label {border-left: 2px solid var(--black-color);}
+}
