@@ -1,4 +1,4 @@
-# Texel - text editor made on basic web stack html, css, javascript
+# Texel - text editor
 
 ### Capabilities
 - Change theme
