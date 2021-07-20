@@ -1,4 +1,4 @@
-# Texel - text editor
+## Texel - minimalistic text editor
 
 ### Capabilities
 - Change theme
