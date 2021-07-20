@@ -1,6 +1,12 @@
-# text-editor
+# Texel - text editor made on basic web stack html, css, javascript
 
+### Capabilities
+- Change theme
+- Automatic saving of text on page refresh or page exit
+- Typing sound
 
-## Texel - text editor made on basic web stack html, css, javascript
-
-Text editor written in HTML / CSS / JavaScript. The text will be saved automatically when you exit the site or refresh the page. LocalStorage is used to store text and settings.
+### Themes
+- Follow System
+- Light
+- Dark
+- Matrix
