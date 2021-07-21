@@ -102,6 +102,10 @@ document.getElementById("list-menu-back-btn").addEventListener("click", (e) => {
 document.getElementById("delete-all-text-btn").addEventListener("click", (e) => document.getElementById("mainTextArea").value = "");
 document.getElementById("copy-all-text-btn").addEventListener("click", (e) => navigator.clipboard.writeText(document.getElementById("mainTextArea").value).then(() => console.log('Successful!'), (err) => console.error('not copy: ', err)));
 
+document.getElementById("text-add-menu-btn").addEventListener("click", (e) => {
+
+});
+
 function btnSound() {
   let audio = new Audio();
   audio.preload = 'auto';
