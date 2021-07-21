@@ -5,8 +5,8 @@
 		font-size: 14pt;
 		letter-spacing: 1px;
 	}
-	#settings-menu-btn, #header-menu-btn {padding: 14px;}
-	#settings-menu-btn div, #header-menu-btn div {width: 18px;height: 18px;}
+	#settings-menu-btn, #header-menu-btn, #texts-list-menu-btn, #list-menu-back-btn {padding: 12px;}
+	#settings-menu-btn div, #header-menu-btn div, #texts-list-menu-btn div, #list-menu-back-btn div {width: 14px;height: 14px;}
 	#copy-all-text-btn, #delete-all-text-btn {letter-spacing: 1px;padding: 0px;font-size: 14pt;}
 	.setting-btn-block {padding: 8px;}
 	#copy-all-text-btn {width: 80px;}
@@ -22,8 +22,8 @@
 		font-size: 14pt;
 		letter-spacing: 1px;
 	}
-	#settings-menu-btn, #header-menu-btn {padding: 12px;}
-	#settings-menu-btn div, #header-menu-btn div {width: 16px;height: 16px;}
+	#settings-menu-btn, #header-menu-btn, #texts-list-menu-btn, #list-menu-back-btn {padding: 10px;}
+	#settings-menu-btn div, #header-menu-btn div, #texts-list-menu-btn div, #list-menu-back-btn div {width: 16px;height: 16px;}
 	#copy-all-text-btn, #delete-all-text-btn {
 		letter-spacing: 1px;
 		padding: 0px;
