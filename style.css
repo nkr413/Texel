@@ -77,25 +77,63 @@ textarea:focus {outline: none;}
 	position: fixed;
 	transition: 0.5s ease-in-out;
 	transform: translateX(-100%);
+	z-index: 1;
+}
+
+#text-list-menu-blc {
+	width: 100%;
+	height: 100%;
+	background: var(--settings-block-bg-color);
+	backdrop-filter: blur(8.0px);
+	-webkit-backdrop-filter: blur(8.0px);
+	user-select: none;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	position: fixed;
+	transition: 0.5s ease-in-out;
+	transform: translateX(-100%);
+	z-index: 1;
 }
 
 /* ------------- STYLES AND ANIMATIONS FOR BUTTON MENU ------------- */
-#settings-menu-btn, #header-menu-btn {
+#settings-menu-btn, #header-menu-btn, #texts-list-menu-btn, #list-menu-back-btn, #text-add-menu-btn {
 	display: block;
 	padding: 15px;
 	background: transparent;
 	border: none;
 	text-align: center;
-	position: absolute;
 }
-#settings-menu-btn div, #header-menu-btn div {
-	width: 20px;
-	height: 20px;
+#settings-menu-btn, #list-menu-back-btn {position: absolute;}
+#settings-menu-btn div, #header-menu-btn div, #texts-list-menu-btn div, #list-menu-back-btn div {
+	width: 16px;
+	height: 16px;
 	border: 3px solid var(--black-color);
-	border-radius: 100%;
 	background: transparent;
+	opacity: 0.7;
+	transition: 0.2s ease-in-out;
 }
-#settings-menu-btn div {border-radius: 0 0 100% 0;}
+#text-add-menu-btn svg {padding-top: 5px;}
+#text-add-menu-btn svg path {
+	fill: var(--black-color);
+	background: transparent;
+	opacity: 0.7;
+	transition: 0.2s ease-in-out;
+}
+#text-add-menu-btn svg:hover path {opacity: 1;}
+#text-add-menu-btn svg {width: 22px;height: 22px;}
+
+#settings-menu-btn div:hover, #header-menu-btn div:hover, #texts-list-menu-btn div:hover, #list-menu-back-btn div:hover {opacity: 1;}
+#header-menu-btn div {border-radius: 100%;}
+#settings-menu-btn div, #list-menu-back-btn div {border-radius: 0 0 100% 0;}
+#texts-list-menu-btn div {border-radius: 0px;}
+.main-button-blc {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+}
 /* ---------------------------------------------- */
 
 .setting-btn-block {
