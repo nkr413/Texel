@@ -93,20 +93,12 @@ window.addEventListener("beforeunload", (e) => {
   if (document.getElementById("sound-radio-1").checked == true) localStorage.setItem("sound-radio", "1");
   else if (document.getElementById("sound-radio-2").checked == true) localStorage.setItem("sound-radio", "2");
 });
-document.getElementById("header-menu-btn").addEventListener("click", (e) => {
-  let stt_blc = document.getElementById("main-settings-block");
-  if (stt_blc.style.transform = "translateX(-100%)") {
-    stt_blc.style.transform = "translateX(0%)";
-    document.getElementById("header-menu-btn").style.display = "none";
-  }
-});
-document.getElementById("settings-menu-btn").addEventListener("click", (e) => {
-  let stt_blc = document.getElementById("main-settings-block");
-  if (stt_blc.style.transform = "translateX(0%)") {
-    stt_blc.style.transform = "translateX(-100%)";
-    document.getElementById("header-menu-btn").style.display = "block";
-  }
-});
+
+document.getElementById("header-menu-btn").addEventListener("click", (e) => {if (document.getElementById("main-settings-block").style.transform = "translateX(-100%)") document.getElementById("main-settings-block").style.transform = "translateX(0%)";});
+document.getElementById("settings-menu-btn").addEventListener("click", (e) => {if (document.getElementById("main-settings-block").style.transform = "translateX(0%)") document.getElementById("main-settings-block").style.transform = "translateX(-100%)";});
+document.getElementById("texts-list-menu-btn").addEventListener("click", (e) => {if (document.getElementById("text-list-menu-blc").style.transform = "translateX(-100%)") document.getElementById("text-list-menu-blc").style.transform = "translateX(0%)";});
+document.getElementById("list-menu-back-btn").addEventListener("click", (e) => {if (document.getElementById("text-list-menu-blc").style.transform = "translateX(0%)") document.getElementById("text-list-menu-blc").style.transform = "translateX(-100%)";});
+
 document.getElementById("delete-all-text-btn").addEventListener("click", (e) => document.getElementById("mainTextArea").value = "");
 document.getElementById("copy-all-text-btn").addEventListener("click", (e) => navigator.clipboard.writeText(document.getElementById("mainTextArea").value).then(() => console.log('Successful!'), (err) => console.error('not copy: ', err)));
 
