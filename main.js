@@ -1,5 +1,8 @@
+let db;
+
 let data = {
   x : 0,
+  base : [],
 
   light() {
     document.documentElement.style.setProperty("--text-area-bg-color", "white");
@@ -13,6 +16,9 @@ let data = {
 
     document.documentElement.style.setProperty("--settings-block-btn-bg-color", "white");
     document.documentElement.style.setProperty("--settings-block-btn-text-color", "black");
+
+    document.documentElement.style.setProperty("--create-text-input-bg-color", "white");
+    document.documentElement.style.setProperty("--create-text-input-text-color", "black");
 
     document.documentElement.style.setProperty("--scrollbar-thumb-color", "rgba(0, 0, 0, 0.6)");
   }, 
@@ -30,6 +36,9 @@ let data = {
     document.documentElement.style.setProperty("--settings-block-btn-bg-color", "white");
     document.documentElement.style.setProperty("--settings-block-btn-text-color", "black");
 
+    document.documentElement.style.setProperty("--create-text-input-bg-color", "black");
+    document.documentElement.style.setProperty("--create-text-input-text-color", "white");
+
     document.documentElement.style.setProperty("--scrollbar-thumb-color", "rgba(255, 255, 255, 0.1)");
   },
 
@@ -46,18 +55,113 @@ let data = {
     document.documentElement.style.setProperty("--settings-block-btn-bg-color", "#00FF00");
     document.documentElement.style.setProperty("--settings-block-btn-text-color", "black");
 
+    document.documentElement.style.setProperty("--create-text-input-bg-color", "black");
+    document.documentElement.style.setProperty("--create-text-input-text-color", "#00FF00");
+
     document.documentElement.style.setProperty("--scrollbar-thumb-color", "rgba(0, 255, 0, 0.3)");
   }
 };
 
+const creationDB = async () => {
+  db = await idb.openDb('db', 1, db => db.createObjectStore('notes', {keyPath: 'id'}));
+
+  let notes = await db.transaction('notes').objectStore('notes').getAll();
+  if (notes.length > 0) {
+    console.log(notes);
+    createList(notes);
+  } 
+}
+
+function createList(note) {
+  let main_txt = document.getElementById("main-text-list-blc");
+  main_txt.innerHTML = "";
+
+  for (i = 0; i < note.length; i++) {
+    let div = document.createElement("div");
+    let del_btn = document.createElement('button');
+    let btn = document.createElement('button');
+    btn.setAttribute("id", `note-btn`);
+    del_btn.setAttribute("id", `del-btn-${note[i].id}`);
+
+    btn.innerHTML = `${note[i].id}.${note[i].title} <span>${note[i].date}</span>`;
+    del_btn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M17 8C17.5523 8 18 8.44772 18 9V19C18 20.6569 16.6569 22 15 22H9C7.34315 22 6 20.6569 6 19V9C6 8.44772 6.44772 8 7 8H17ZM16 10H8V19C8 19.5523 8.44772 20 9 20H15C15.5523 20 16 19.5523 16 19V10ZM9 3C9 2.44772 9.44772 2 10 2H14C14.5523 2 15 2.44772 15 3V4H19C19.5523 4 20 4.44772 20 5C20 5.55228 19.5523 6 19 6H5C4.44772 6 4 5.55228 4 5C4 4.44772 4.44772 4 5 4H9V3Z" fill="black"/></svg>';
+
+    div.append(btn);
+    div.append(del_btn);
+    main_txt.append(div);
+  }
+  buttonEvent();
+  deleteButtonEvent();
+}
+
+let addNote = async () => {
+  if (document.getElementById("mainTextArea").value === '') return;
+
+  let b_len = await db.transaction('notes').objectStore('notes').getAll();
+
+  let note = {
+    id : b_len.length + 1,
+    title : document.getElementById("create-article-input").value,
+    text: document.getElementById("mainTextArea").value,
+    date: new Date().toLocaleDateString()
+  }
+
+  try {
+    await db.transaction('notes', 'readwrite').objectStore('notes').add(note);
+    let list = await db.transaction('notes').objectStore('notes').getAll();
+    createList(list);
+  }
+  catch { }
+}
+
 // ALL EVENTS
 window.onload = function() {
-  if (localStorage.text_area) document.getElementById("mainTextArea").value = localStorage.getItem("text_area");
+  creationDB();
   themeRadioItems();
   soundRadioItems();
   randomTxtPlaceHolder();
   autoSizeTxtArea();
-} 
+}
+
+function buttonEvent() {
+  document.querySelectorAll("#note-btn").forEach((item) => {
+    item.addEventListener("click", async () => {
+      let idNum = Number(item.innerHTML[0] - 1);
+      let base = await db.transaction('notes').objectStore('notes').getAll();
+
+      document.getElementById("mainTextArea").value = base[idNum].text;
+      document.querySelector(".text-title").innerHTML = base[idNum].title;
+    });
+  });
+}
+
+async function deleteButtonEvent() {
+  document.querySelectorAll("#main-text-list-blc > div > button:nth-of-type(2)").forEach((item) => {
+    item.addEventListener("click", async () => {
+      let num = Number(item.id.replace('del-btn-', ''));
+      await db.transaction('notes', 'readwrite').objectStore('notes').delete(num);
+
+      let base = await db.transaction('notes').objectStore('notes').getAll();
+      let copyBase = base;
+
+      let idNum = 1;
+      for (i = 0; i < copyBase.length; i++) {
+        copyBase[i].id = idNum;
+        idNum += 1;
+      }
+
+      await db.transaction('notes', 'readwrite').objectStore('notes').clear("notes");
+
+      for (i = 0; i < copyBase.length; i++) {
+        await db.transaction('notes', 'readwrite').objectStore('notes').add(copyBase[i]);
+      }
+
+      document.getElementById("main-text-list-blc").value = "";
+      let list = await db.transaction('notes').objectStore('notes').getAll().then(location.reload());
+    });
+  });
+}
+
 window.addEventListener("keydown", function(e) {
   if (localStorage.getItem("sound-radio") == 1) btnSound();
   else if (localStorage.getItem("sound-radio") == 2) return;  
@@ -83,8 +187,6 @@ document.querySelectorAll("#sound-radio-blc > input[name='sound-radios']").forEa
   });
 });
 window.addEventListener("beforeunload", (e) => {
-  localStorage.setItem('text_area', document.getElementById("mainTextArea").value), false;
-
   if (document.getElementById("theme-radio-1").checked == true) localStorage.setItem("theme-radio", "1");
   else if (document.getElementById("theme-radio-2").checked == true) localStorage.setItem("theme-radio", "2");
   else if (document.getElementById("theme-radio-3").checked == true) localStorage.setItem("theme-radio", "3");
@@ -102,9 +204,7 @@ document.getElementById("list-menu-back-btn").addEventListener("click", (e) => {
 document.getElementById("delete-all-text-btn").addEventListener("click", (e) => document.getElementById("mainTextArea").value = "");
 document.getElementById("copy-all-text-btn").addEventListener("click", (e) => navigator.clipboard.writeText(document.getElementById("mainTextArea").value).then(() => console.log('Successful!'), (err) => console.error('not copy: ', err)));
 
-document.getElementById("text-add-menu-btn").addEventListener("click", (e) => {
-
-});
+document.getElementById("article-save-btn").addEventListener("click", (e) => addNote());
 
 function btnSound() {
   let audio = new Audio();
