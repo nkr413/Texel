@@ -15,6 +15,9 @@
 	--settings-block-btn-bg-color: white;
 	--settings-block-btn-text-color: black;
 
+	--create-text-input-bg-color: white;
+	--create-text-input-text-color: black;
+
 	--scrollbar-thumb-color: rgba(0, 0, 0, 0.6);
 }
 
@@ -27,6 +30,7 @@ body {
 
 * {transition: 0.3s ease-in-out; font-family: "Roboto Slab", serif;}
 button:focus {outline: none;}
+input:focus {outline: none;}
 textarea:focus {outline: none;}
 
 ::-webkit-scrollbar {background: rgba(255, 255, 255, 0); width: 8px;}
@@ -36,11 +40,20 @@ textarea:focus {outline: none;}
 #main-block {
 	margin-left: auto;
 	margin-right: auto;
-	padding-top: 60px;
+	padding-top: 40px;
 	background: transparent;
 	text-align: center;
 	width: 95%;
 	padding-bottom: 20px;
+}
+
+.text-title {
+	width: 95%;
+	margin-left: auto;
+	margin-right: auto;
+
+	text-align: left;
+	font-size: 18pt;
 }
 
 #mainTextArea {
@@ -97,13 +110,85 @@ textarea:focus {outline: none;}
 	z-index: 1;
 }
 
-#list-block {
+#list-menu-for-create-articles-blc {
+	border: 2px solid transparent;
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 10px;
+}
+#list-menu-for-create-articles-blc div:nth-of-type(1) {
+	color: var(--black-color);
+	font-size: 18pt;
+	letter-spacing: 1px;
+	width: 220px;
+}
+#list-menu-for-create-articles-blc input {
+	width: 300px;
+	padding: 8px;
+	font-size: 16pt;
+	background: var(--create-text-input-bg-color);
+	color: var(--create-text-input-text-color);
+	border: 2px solid var(--black-color);
+	border-bottom: 2px solid var(--black-color);
+	border-radius: 5px;
+}
+#list-menu-for-create-articles-blc input:focus {
+	border: 2px solid transparent;
+	border-bottom: 2px solid var(--black-color);
+	border-radius: 0px;
+}
+#list-menu-for-create-articles-blc button {
+	background: var(--create-text-input-bg-color);
+	color: var(--create-text-input-text-color);
+	border: 2px solid var(--black-color);
+	border-radius: 5px;
+	letter-spacing: 2px;
+	padding: 8px;
+	padding-left: 12px;
+	padding-right: 12px;
+	font-size: 16pt;
+	text-align: center;
+	transform: translateY(0px);
+	transition: 0.1s ease-in-out;
+}
+#list-menu-for-create-articles-blc button:hover {background: var(--create-text-input-text-color);color: var(--create-text-input-bg-color);}
+#list-menu-for-create-articles-blc button:active {transform: translateY(10px);}
+
+#main-text-list-blc {
 	border: 2px solid azure;
 	width: 80%;
 	margin-left: auto;
 	margin-right: auto;
-	padding: 8px;
+	padding: 10px;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
 }
+
+#main-text-list-blc > div {
+	margin-bottom: 10px;
+	text-align: left;
+	background: yellow;
+	color: var(--text-area-text-color);
+}
+#main-text-list-blc > div > button {
+	border: 2px solid var(--black-color);
+	padding: 10px;
+	font-size: 16pt;
+	letter-spacing: 1px;
+	margin-right: 8px;
+	border-radius: 6px;
+	transform: translateY(0px);
+}
+#main-text-list-blc > div > button:active  {
+	transform: translateY(10px);
+}
+#main-text-list-blc > div > button > span {
+	background: springgreen;
+}
+
 
 /* ------------- STYLES AND ANIMATIONS FOR BUTTON MENU ------------- */
 #header-menu-btn, #texts-list-menu-btn, #list-menu-back-btn, #settings-menu-btn {
@@ -118,7 +203,7 @@ textarea:focus {outline: none;}
 	height: 16px;
 	border: 3px solid var(--black-color);
 	background: transparent;
-	opacity: 0.7;
+	opacity: 0.5;
 	transition: 0.2s ease-in-out;
 }
 
@@ -134,7 +219,7 @@ textarea:focus {outline: none;}
 #text-add-menu-btn svg path {
 	fill: var(--black-color);
 	background: transparent;
-	opacity: 0.7;
+	opacity: 0.5;
 	transition: 0.2s ease-in-out;
 }
 #text-add-menu-btn svg:hover path {opacity: 1;}
