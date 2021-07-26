@@ -46,8 +46,13 @@
 	</div>
 
 	<div id="text-list-menu-blc">
-		<div class="main-button-blc"><button id="list-menu-back-btn"><div></div></button></div><br><br>
-		<div id="list-block"></div>
+		<div class="main-button-blc"><button id="list-menu-back-btn"><div></div></button></div><br>
+		<div id="list-menu-for-create-articles-blc">
+			<div>Save a text</div><br>
+			<input type="text" id="create-article-input" placeholder="Write a text title...">
+			<button id="article-save-btn">Save</button>
+		</div><br><br>
+		<div id="main-text-list-blc"></div>
 	</div>
 
 	<div class="main-button-blc">
@@ -61,9 +66,11 @@
 	</div>
 
 	<div id="main-block">
+		<h2 class="text-title"></h2>
 		<textarea id="mainTextArea" placeholder="Start writing..."></textarea>
 	</div>
 
+	<script src="https://cdn.jsdelivr.net/npm/idb@3.0.2/build/idb.min.js"></script>
 	<script src="main.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.10/SmoothScroll.min.js" integrity="sha256-huW7yWl7tNfP7lGk46XE+Sp0nCotjzYodhVKlwaNeco=" crossorigin="anonymous"></script>
 	<script>
