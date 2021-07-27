@@ -36,8 +36,8 @@ let data = {
     document.documentElement.style.setProperty("--settings-block-btn-bg-color", "white");
     document.documentElement.style.setProperty("--settings-block-btn-text-color", "black");
 
-    document.documentElement.style.setProperty("--create-text-input-bg-color", "black");
-    document.documentElement.style.setProperty("--create-text-input-text-color", "white");
+    document.documentElement.style.setProperty("--create-text-input-bg-color", "white");
+    document.documentElement.style.setProperty("--create-text-input-text-color", "black");
 
     document.documentElement.style.setProperty("--scrollbar-thumb-color", "rgba(255, 255, 255, 0.1)");
   },
@@ -55,8 +55,8 @@ let data = {
     document.documentElement.style.setProperty("--settings-block-btn-bg-color", "#00FF00");
     document.documentElement.style.setProperty("--settings-block-btn-text-color", "black");
 
-    document.documentElement.style.setProperty("--create-text-input-bg-color", "black");
-    document.documentElement.style.setProperty("--create-text-input-text-color", "#00FF00");
+    document.documentElement.style.setProperty("--create-text-input-bg-color", "#00FF00");
+    document.documentElement.style.setProperty("--create-text-input-text-color", "black");
 
     document.documentElement.style.setProperty("--scrollbar-thumb-color", "rgba(0, 255, 0, 0.3)");
   }
