@@ -50,10 +50,13 @@ textarea:focus {outline: none;}
 .text-title {
 	width: 95%;
 	margin-left: auto;
+	color: var(--text-area-text-color);
 	margin-right: auto;
 
 	text-align: left;
 	font-size: 18pt;
+	letter-spacing: 2px;
+	display: block;
 }
 
 #mainTextArea {
@@ -91,6 +94,7 @@ textarea:focus {outline: none;}
 	transition: 0.5s ease-in-out;
 	transform: translateX(-100%);
 	z-index: 1;
+	overflow-y: auto;
 }
 
 #text-list-menu-blc {
@@ -108,6 +112,7 @@ textarea:focus {outline: none;}
 	transition: 0.5s ease-in-out;
 	transform: translateX(-100%);
 	z-index: 1;
+	overflow-y: auto;
 }
 
 #list-menu-for-create-articles-blc {
@@ -161,7 +166,7 @@ textarea:focus {outline: none;}
 
 #main-text-list-blc {
 	border: 2px solid transparent;
-	width: 85%;
+	width: 75%;
 	margin-left: auto;
 	margin-right: auto;
 	padding: 10px;
@@ -242,9 +247,9 @@ textarea:focus {outline: none;}
 	justify-content: flex-start;
 	flex-wrap: wrap;
 }
-.setting-btn-block > button:nth-of-type(1) {margin-right: 20px; margin-bottom: 20px;}
+.setting-btn-block > button {margin-right: 20px; margin-bottom: 20px;}
 
-#copy-all-text-btn, #delete-all-text-btn {
+#copy-all-text-btn, #delete-all-text-btn, #delete-all-notes-btn {
 	background: var(--settings-block-btn-bg-color);
 	color: var(--settings-block-btn-text-color);
 	border: 2px solid transparent;
@@ -260,8 +265,8 @@ textarea:focus {outline: none;}
 	transition: 0.1s ease-in-out;
 	box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px;
 }
-#copy-all-text-btn:hover, #delete-all-text-btn:hover {border: 2px solid black;}
-#copy-all-text-btn:active, #delete-all-text-btn:active {transform: translateY(10px);}
+#copy-all-text-btn:hover, #delete-all-text-btn:hover, #delete-all-notes-btn:hover {border: 2px solid black;}
+#copy-all-text-btn:active, #delete-all-text-btn:active, #delete-all-notes-btn:active {transform: translateY(10px);}
 
 .header-theme-settings {
 	background: transparent;
@@ -278,10 +283,11 @@ textarea:focus {outline: none;}
 }
 .header-theme-settings > div {margin-bottom: 40px; margin-right: 40px;}
 
-#themes-input-blc {
+#themes-input-blc, #sound-radio-blc, #title-radio-blc {
 	width: 200px;
 	background: transparent;
 	font-size: 16pt;
+	border: 2px solid transparent;
 	border-radius: 2px;
 
 	display: flex;
@@ -293,22 +299,14 @@ textarea:focus {outline: none;}
 #theme-radio-3:checked + label,
 #theme-radio-4:checked + label {border-left: 3px solid var(--black-color);}
 
-#sound-radio-blc {
-	width: 200px;
-	background: transparent;
-	font-size: 16pt;
-	border: 2px solid transparent;
-	border-radius: 2px;
-
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-}
 #sound-radio-1:checked + label,
 #sound-radio-2:checked + label {border-left: 3px solid var(--black-color);}
 
+#title-radio-1:checked + label,
+#title-radio-2:checked + label {border-left: 3px solid var(--black-color);}
+
 /* RADIOS INPUT STYLES */
-#themes-input-blc > div, #sound-radio-blc > div {
+#themes-input-blc > div, #sound-radio-blc > div, #title-radio-blc > div {
 	color: var(--black-color);
 	font-size: 16pt;
 	letter-spacing: 1px;
@@ -316,8 +314,8 @@ textarea:focus {outline: none;}
 	width: 220px;
 }
 
-#themes-input-blc input, #sound-radio-blc input {display: none;}
-#themes-input-blc label, #sound-radio-blc label {
+#themes-input-blc input, #sound-radio-blc input, #title-radio-blc input {display: none;}
+#themes-input-blc label, #sound-radio-blc label, #title-radio-blc label {
 	color: var(--black-color);
 	padding: 8px;
 	padding-left: 18px;
@@ -327,7 +325,7 @@ textarea:focus {outline: none;}
 	border: 3px solid transparent;
 	border-radius: 0px;
 }
-#themes-input-blc label:hover, #sound-radio-blc label:hover {
+#themes-input-blc label:hover, #sound-radio-blc label:hover, #title-radio-blc label:hover {
 	border: 3px solid var(--black-color);
 	border-radius: 6px;
 }
