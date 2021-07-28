@@ -18,7 +18,7 @@
 		padding-left: 14px;
 	}
 	.header-theme-settings > div {margin-bottom: 30px; margin-right: 30px;}
-	#themes-input-blc, #sound-radio-blc {width: 180px;font-size: 14pt;}	
+	#themes-input-blc, #sound-radio-blc, #title-radio-blc {width: 180px;font-size: 14pt;}	
 
 	#list-menu-for-create-articles-blc input {
 		width: 250px;
@@ -45,6 +45,7 @@
 		font-size: 14pt;
 		letter-spacing: 1px;
 	}
+	.text-title {font-size: 16pt;}
 	#copy-all-text-btn, #delete-all-text-btn {
 		letter-spacing: 1px;
 		padding: 0px;
@@ -54,7 +55,7 @@
 	}
 	.header-theme-settings {padding: 8px;padding-left: 18px;width: 85%;}
 	.header-theme-settings > div {margin-bottom: 20px; margin-right: 20px;}
-	#themes-input-blc, #sound-radio-blc {width: 180px;font-size: 14pt;}
+	#themes-input-blc, #sound-radio-blc, #title-radio-blc {width: 180px;font-size: 14pt;}
 
 	#list-menu-for-create-articles-blc div:nth-of-type(1) {font-size: 16pt;}
 	#list-menu-for-create-articles-blc input {
@@ -76,16 +77,5 @@
 		font-size: 14pt;
 	}
 
-	#themes-input-blc label, #sound-radio-blc label {
-		padding-left: 16px;
-		border-left: 2px solid transparent;
-		border: 2px solid transparent;
-	}
-	#themes-input-blc label:hover, #sound-radio-blc label:hover {border: 2px solid var(--black-color);}
-	#theme-radio-1:checked + label,
-	#theme-radio-2:checked + label,
-	#theme-radio-3:checked + label,
-	#theme-radio-4:checked + label {border-left: 2px solid var(--black-color);}
-	#sound-radio-1:checked + label,
-	#sound-radio-2:checked + label {border-left: 2px solid var(--black-color);}
+	#themes-input-blc label, #sound-radio-blc label, #title-radio-blc label {padding-left: 16px;}
 }
