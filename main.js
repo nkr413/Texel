@@ -2,6 +2,7 @@ let db;
 
 let data = {
   x : 0,
+  saveInt : 0,
   base : [],
 
   light() {
@@ -66,12 +67,8 @@ const creationDB = async () => {
   db = await idb.openDb('db', 1, db => db.createObjectStore('notes', {keyPath: 'id'}));
 
   let notes = await db.transaction('notes').objectStore('notes').getAll();
-  if (notes.length > 0) {
-    console.log(notes);
-    createList(notes);
-  } 
+  if (notes.length > 0) createList(notes);
 }
-
 function createList(note) {
   let main_txt = document.getElementById("main-text-list-blc");
   main_txt.innerHTML = "";
@@ -93,10 +90,8 @@ function createList(note) {
   buttonEvent();
   deleteButtonEvent();
 }
-
 let addNote = async () => {
   if (document.getElementById("mainTextArea").value === '') return;
-
   let b_len = await db.transaction('notes').objectStore('notes').getAll();
 
   let note = {
@@ -109,32 +104,31 @@ let addNote = async () => {
   try {
     await db.transaction('notes', 'readwrite').objectStore('notes').add(note);
     let list = await db.transaction('notes').objectStore('notes').getAll();
+    document.getElementById("create-article-input").value = "";
     createList(list);
   }
   catch { }
 }
-
-// ALL EVENTS
-window.onload = function() {
-  creationDB();
-  themeRadioItems();
-  soundRadioItems();
-  randomTxtPlaceHolder();
-  autoSizeTxtArea();
-}
-
 function buttonEvent() {
   document.querySelectorAll("#note-btn").forEach((item) => {
     item.addEventListener("click", async () => {
       let idNum = Number(item.innerHTML[0] - 1);
       let base = await db.transaction('notes').objectStore('notes').getAll();
+      
+      data.saveInt = item;
+      let btn_base = [];
+
+      document.querySelectorAll("#main-text-list-blc > div > button").forEach((elem) => btn_base.push(elem));
+      for (i = 0; i < btn_base.length; i++) {
+        if (item == btn_base[i]) btn_base[i].style.border = "2px solid #888888";  
+        else btn_base[i].style.border = "2px solid var(--create-text-input-bg-color)";
+      }
 
       document.getElementById("mainTextArea").value = base[idNum].text;
       document.querySelector(".text-title").innerHTML = base[idNum].title;
     });
   });
 }
-
 async function deleteButtonEvent() {
   document.querySelectorAll("#main-text-list-blc > div > button:nth-of-type(2)").forEach((item) => {
     item.addEventListener("click", async () => {
@@ -151,15 +145,40 @@ async function deleteButtonEvent() {
       }
 
       await db.transaction('notes', 'readwrite').objectStore('notes').clear("notes");
-
-      for (i = 0; i < copyBase.length; i++) {
-        await db.transaction('notes', 'readwrite').objectStore('notes').add(copyBase[i]);
-      }
-
-      document.getElementById("main-text-list-blc").value = "";
-      let list = await db.transaction('notes').objectStore('notes').getAll().then(location.reload());
+      for (i = 0; i < copyBase.length; i++) await db.transaction('notes', 'readwrite').objectStore('notes').add(copyBase[i]);
+      
+      data.saveInt = 0;
+      document.getElementById("main-text-list-blc").innerHTML = "";
+      let list = await db.transaction('notes').objectStore('notes').getAll();
+      createList(list);
     });
   });
+}
+async function refreshDB_beforeReload() {
+  if (data.saveInt == 0) return;
+  else {
+    let idTag = Number(data.saveInt.innerHTML.charAt(0));
+    let txt = await db.transaction('notes').objectStore('notes').get(idTag);
+
+    let item = {
+      id : txt.id,
+      title : txt.title,
+      text : document.getElementById("mainTextArea").value,
+      date : txt.date
+    };
+
+    await db.transaction('notes', 'readwrite').objectStore('notes').put(item);
+  }
+}
+
+// ALL EVENTS
+window.onload = function() {
+  creationDB();
+  themeRadioItems();
+  soundRadioItems();
+  titleRadioItems();
+  randomTxtPlaceHolder();
+  autoSizeTxtArea();
 }
 
 window.addEventListener("keydown", function(e) {
@@ -186,7 +205,21 @@ document.querySelectorAll("#sound-radio-blc > input[name='sound-radios']").forEa
     else return;
   });
 });
+document.querySelectorAll("#title-radio-blc > input[name='title-radios']").forEach((item) => {
+  item.addEventListener("click", () => {
+    item.checked = true;
+    
+    if (item.value == "yes") localStorage.setItem("title-radio", "1");
+    else if (item.value == "no") localStorage.setItem("title-radio", "2");
+    else return;
+
+    titleRadioItems();
+  });
+});
+
 window.addEventListener("beforeunload", (e) => {
+  refreshDB_beforeReload();
+
   if (document.getElementById("theme-radio-1").checked == true) localStorage.setItem("theme-radio", "1");
   else if (document.getElementById("theme-radio-2").checked == true) localStorage.setItem("theme-radio", "2");
   else if (document.getElementById("theme-radio-3").checked == true) localStorage.setItem("theme-radio", "3");
@@ -194,6 +227,9 @@ window.addEventListener("beforeunload", (e) => {
 
   if (document.getElementById("sound-radio-1").checked == true) localStorage.setItem("sound-radio", "1");
   else if (document.getElementById("sound-radio-2").checked == true) localStorage.setItem("sound-radio", "2");
+
+  if (document.getElementById("title-radio-1").checked == true) localStorage.setItem("title-radio", "1");
+  else if (document.getElementById("title-radio-2").checked == true) localStorage.setItem("title-radio", "2");
 });
 
 document.getElementById("header-menu-btn").addEventListener("click", (e) => {if (document.getElementById("main-settings-block").style.transform = "translateX(-100%)") document.getElementById("main-settings-block").style.transform = "translateX(0%)";});
@@ -201,9 +237,16 @@ document.getElementById("settings-menu-btn").addEventListener("click", (e) => {i
 document.getElementById("texts-list-menu-btn").addEventListener("click", (e) => {if (document.getElementById("text-list-menu-blc").style.transform = "translateX(-100%)") document.getElementById("text-list-menu-blc").style.transform = "translateX(0%)";});
 document.getElementById("list-menu-back-btn").addEventListener("click", (e) => {if (document.getElementById("text-list-menu-blc").style.transform = "translateX(0%)") document.getElementById("text-list-menu-blc").style.transform = "translateX(-100%)";});
 
-document.getElementById("delete-all-text-btn").addEventListener("click", (e) => document.getElementById("mainTextArea").value = "");
+document.getElementById("delete-all-text-btn").addEventListener("click", (e) => {
+  document.getElementById("mainTextArea").value = "";
+  document.getElementById("create-article-input").value = "";
+});
 document.getElementById("copy-all-text-btn").addEventListener("click", (e) => navigator.clipboard.writeText(document.getElementById("mainTextArea").value).then(() => console.log('Successful!'), (err) => console.error('not copy: ', err)));
-
+document.getElementById("delete-all-notes-btn").addEventListener("click", async (e) => {
+  data.saveInt = 0;
+  await db.transaction('notes', 'readwrite').objectStore('notes').clear("notes");  
+  document.getElementById("main-text-list-blc").innerHTML = "";
+})
 document.getElementById("article-save-btn").addEventListener("click", (e) => addNote());
 
 function btnSound() {
@@ -239,6 +282,16 @@ function themeRadioItems() {
     document.getElementById("theme-radio-4").checked = true;
     data.matrix();
   } else return;
+}
+
+function titleRadioItems() {
+  if (localStorage.getItem("title-radio") == "1") {
+    document.getElementById("title-radio-1").checked = true;
+    document.querySelector(".text-title").style.display = "block";
+  } else if (localStorage.getItem("title-radio") == "2") {
+    document.getElementById("title-radio-2").checked = true;
+    document.querySelector(".text-title").style.display = "none";
+  }
 }
 
 function autoSizeTxtArea() {
