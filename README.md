@@ -6,7 +6,7 @@
 - Typing sound
 
 ### Themes
-- Follow System
+- Auto
 - Light
 - Dark
 - Matrix
