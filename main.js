@@ -161,10 +161,10 @@ async function refreshDB_beforeReload() {
     let txt = await db.transaction('notes').objectStore('notes').get(idTag);
 
     let item = {
-      id : txt.id,
-      title : txt.title,
-      text : document.getElementById("mainTextArea").value,
-      date : txt.date
+      id: txt.id,
+      title: txt.title,
+      text: document.getElementById("mainTextArea").value,
+      date: txt.date
     };
 
     await db.transaction('notes', 'readwrite').objectStore('notes').put(item);
