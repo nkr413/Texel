@@ -10,3 +10,5 @@
 - Light
 - Dark
 - Matrix
+
+![Иллюстрация к проекту](https://github.com/nkr413/Texel/blob/main/texel-editor-pic/texel-editor-pic.png)
