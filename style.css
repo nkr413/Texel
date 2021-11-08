@@ -147,7 +147,6 @@ textarea:focus {outline: none;}
 }
 #list-menu-for-create-articles-blc button {
 	background: var(--create-text-input-bg-color);
-	
 	border: 2px solid var(--create-text-input-bg-color);
 	border-radius: 5px;
 	padding: 8px;
