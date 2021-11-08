@@ -172,13 +172,15 @@ async function refreshDB_beforeReload() {
 }
 
 // ALL EVENTS
-window.onload = function() {
+window.onload = async function() {
   creationDB();
   themeRadioItems();
   soundRadioItems();
   titleRadioItems();
   randomTxtPlaceHolder();
   autoSizeTxtArea();
+
+  if (navigator.serviceWorker) await navigator.serviceWorker.register("worker.js");
 }
 
 window.addEventListener("keydown", function(e) {
